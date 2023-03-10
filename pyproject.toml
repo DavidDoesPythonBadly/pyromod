@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pyromodpatched"
-version = "0.0.1"
+version = "0.0.2"
 description = "A monkeypatcher add-on for Pyrogram that does conversation handling"
 authors = ["usernein"]
 license = "LGPLv3+"
@@ -11,7 +11,7 @@ line-length = 79
 
 [tool.poetry.dependencies]
 python = "^3.8"
-pyrogram = ">=1.0"
+pyrogrampatched = ">=0.0.1"
 
 [build-system]
 requires = ["poetry-core"]
