@@ -12,7 +12,7 @@ files = [
 ]
 
 [[package]]
-name = "pyrogrampatchedm"
+name = "pyrogrampatched"
 version <= 0.0.1
 description = "Elegant, modern and asynchronous Telegram MTProto API framework in Python for users and bots"
 category = "main"
