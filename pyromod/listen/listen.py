@@ -20,9 +20,12 @@ along with pyromod.  If not, see <https://www.gnu.org/licenses/>.
 
 import asyncio
 from typing import Optional, Callable, Union
-import pyrogram
 from enum import Enum
+import pyrogram
 from ..utils import patch, patchable, PyromodConfig
+from asyncio import get_running_loop, Future, Task
+
+# from justins_python_helpers.helpers import asyncFromValue
 
 loop = asyncio.get_event_loop()
 
@@ -276,7 +279,17 @@ class CallbackQueryHandler:
 
         filters = listener["filters"] if listener else self.filters
 
-        return await filters(client, query) if callable(filters) else True
+        if callable(filters):
+            return await filters(client, query)
+        else:
+            return (await asyncFromValue(True)).result()
+
+    @staticmethod
+    async def asyncFromValue(value) -> Future:
+        loop = get_running_loop()
+        fut = loop.create_future()
+        fut.set_result(value)
+        return fut
 
     @patchable
     async def resolve_future(self, client, query, *args):
